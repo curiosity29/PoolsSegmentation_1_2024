@@ -38,4 +38,4 @@ def predict(weight_path, image_path, save_path):
 
 if __name__ == "__main__":
     main_args = get_main_args()
-    predict(**main_args)
+    predict(**vars(main_args))
