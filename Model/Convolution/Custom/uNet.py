@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow.keras import layers
 
 # from Blocks.Basic import UNet_encoder, UNet_decoder, CoBaRe
-from Blocks.Basic import *
+from Utility.Blocks.Basic import *
 
 
 def uNet1(n_channel = 3, n_class = 2, input_size = 256, output_size = 256, head = "sigmoid", filters = (16, 32, 64, 128), **ignore):
