@@ -1,6 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras import layers
-from Utility.Blocks.Basic import CoBaRe
+from Blocks.Basic import CoBaRe
 
 class RSU(layers.Layer):
   def __init__(self, height, in_ch, mid_ch, out_ch, dilation = 1, **kwargs):

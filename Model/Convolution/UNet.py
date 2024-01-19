@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras import layers
 
-from Utility.Blocks.Basic import UNet_encoder, UNet_decoder, CoBaRe
+from Blocks.Basic import UNet_encoder, UNet_decoder, CoBaRe
 
 def UNet(n_channel = 3, n_class = 2, input_size = 256, output_size = 256, softmax_head = True, **ignore):
   inputs = tf.keras.Input(shape = (input_size, input_size, n_channel), name = "UNet_input")

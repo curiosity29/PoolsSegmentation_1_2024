@@ -7,11 +7,12 @@ def get_main_args():
     arg("--save_path", type=str, default="./predict.tif", help="")
     return parser.parse_args()
 
-from Utility import Inference, Configs
-from Model import Blocks, Convolution
-from Utility.Inference import Window
-from Utility.Configs.Manual import get_args
-from Model.Convolution.Custom import uNet
+import sys
+sys.path.append("./Utility")
+sys.path.append("./Model")
+from Inference import Window
+from Configs.Manual import get_args
+from Convolution.Custom import uNet
 
 def predict(weight_path, image_path, save_path):
   """
