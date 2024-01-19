@@ -32,7 +32,7 @@ def predict(weight_path, image_path, save_path):
 
   Window.predict_windows(pathTif = image_path, pathSave = save_path, 
                   model = model, preprocess = preprocess,
-                  widow_size = args["output_size"], predict_dim = args["n_class"])
+                  window_size = args["output_size"], predict_dim = args["n_class"])
 
 
 
