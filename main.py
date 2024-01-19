@@ -7,8 +7,8 @@ def get_main_args():
     arg("--save_path", type=str, default="./predict.tif", help="")
     return parser.parse_args()
 
-# from Utility import Inference, Configs
-# from Model import Blocks, Convolution
+from Utility import Inference, Configs
+from Model import Blocks, Convolution
 from Utility.Inference import Window
 from Utility.Configs.Manual import get_args
 from Model.Convolution.Custom import uNet
