@@ -5,15 +5,13 @@ def get_main_args():
     arg("--weight_path", type=str, default="./checkpoint.weights.h5", help="")
     arg("--image_path", type=str, default="./image.tif", help="")
     arg("--save_path", type=str, default="./predict.tif", help="")
-    
-    # arg("--crop_size", type=int, default=480, help="centered crop size")
     return parser.parse_args()
 
-from Utility import Inference, Configs
-from Model import Blocks, Convolution
-from Inference import Window
-from Convolution.Custom import uNet
-from Configs.Manual import get_args
+# from Utility import Inference, Configs
+# from Model import Blocks, Convolution
+from Utility.Inference import Window
+from Utility.Configs.Manual import get_args
+from Model.Convolution.Custom import uNet
 
 def predict(weight_path, image_path, save_path):
   """
