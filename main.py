@@ -2,13 +2,13 @@ from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 def get_main_args():
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     arg = parser.add_argument
-    arg("--weight_path", type=str, default="./checkpoint.weights.h5", help="")
-    arg("--image_path", type=str, default="./image.tif", help="")
-    arg("--save_path", type=str, default="./predict.tif", help="")
-    arg("--batch_size", type=int, default=8, help="")
+    arg("--weight_path", type=str, default="./Checkpoint_weights/*.h5", help="weights.h5 file")
+    arg("--image_path", type=str, default="./Test_images/*.tif", help="tif file")
+    arg("--save_path", type=str, default="./prediction.tif", help="output tif file")
+    arg("--batch_size", type=int, default=8, help="batch size each predict, lowering to reduce memory requirement")
     return parser.parse_args()
 
-import sys
+import sys, glob
 sys.path.append("./Utility")
 sys.path.append("./Model")
 from Inference import Window
@@ -22,6 +22,10 @@ def predict(weight_path, image_path, save_path, batch_size = 8):
         image_path: path to image tif file to predict
         save_path: tif image path to save to
   """
+  # take any path that match
+  weight_path = glob.glob(f"*{weight_path}*", recursive=True)
+  image_path = glob.glob(f"*{image_path}*", recursive=True)
+  save_path = glob.glob(f"*{save_path}*", recursive=True)
   def get_model(weight_path, args):
     model = uNet.dilatedUNet1(**args, head = "sigmoid")
     model.load_weights(weight_path)
