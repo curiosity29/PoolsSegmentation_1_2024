@@ -5,6 +5,7 @@ def get_main_args():
     arg("--weight_path", type=str, default="./checkpoint.weights.h5", help="")
     arg("--image_path", type=str, default="./image.tif", help="")
     arg("--save_path", type=str, default="./predict.tif", help="")
+    arg("--batch_size", type=int, default=8, help="")
     return parser.parse_args()
 
 import sys
@@ -14,7 +15,7 @@ from Inference import Window
 from Configs.Manual import get_args
 from Convolution.Custom import uNet
 
-def predict(weight_path, image_path, save_path):
+def predict(weight_path, image_path, save_path, batch_size = 8):
   """
     Args:
         weight_path: weight for the model, .weights.h5 format
@@ -31,7 +32,7 @@ def predict(weight_path, image_path, save_path):
   preprocess = lambda x: x/ 255
 
   Window.predict_windows(pathTif = image_path, pathSave = save_path, 
-                  model = model, preprocess = preprocess,
+                  model = model, preprocess = preprocess, batch_size = batch_size,
                   window_size = args["output_size"], predict_dim = args["n_class"])
 
 

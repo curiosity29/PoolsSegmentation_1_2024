@@ -43,7 +43,7 @@ class WindowExtractor():
     return (corX, corY), corner_type
 
 
-def predict_windows(pathTif, pathSave, model, preprocess, window_size = 512, predict_dim = 1, output_type = "float32"):
+def predict_windows(pathTif, pathSave, model, preprocess, window_size = 512, predict_dim = 1, output_type = "float32", batch_size = 8):
 
   with rs.open(pathTif) as src:
     # get meta
@@ -62,7 +62,7 @@ def predict_windows(pathTif, pathSave, model, preprocess, window_size = 512, pre
         while True:
           batch = []
           windows = []
-          for _ in range(8):
+          for _ in range(batch_size):
             (corX, corY), corner_type = extractor.getWindow()
             # print(corX, corY, corner_type)
             if corX is None:
