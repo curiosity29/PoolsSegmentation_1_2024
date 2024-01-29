@@ -25,7 +25,7 @@ def predict(weight_path, image_path, save_path, batch_size = 8):
   # take any path that match
   weight_path = glob.glob(f"{weight_path}", recursive=True)[0]
   image_path = glob.glob(f"{image_path}", recursive=True)[0]
-  save_path = glob.glob(f"{save_path}", recursive=True)[0]
+  # save_path = save_path
   def get_model(weight_path, args):
     model = uNet.dilatedUNet1(**args, head = "sigmoid")
     model.load_weights(weight_path)
